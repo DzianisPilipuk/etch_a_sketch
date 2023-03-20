@@ -22,13 +22,16 @@ function getDensity() {
 }
 function createGrid() {
     for (let i = 0; i < gridDensity; i++) {
-        document.getElementById("grid").innerHTML += "<div style='display: flex'>" + createLine() + "</div>";
+        document.getElementById("grid").innerHTML += "<div style='display: flex'>" + createLine(i) + "</div>";
     }
-    function createLine() {
+    function createLine(y) {
         let line = "";
-        for (let a = 0; a < gridDensity; a++) {
-            line += "<div class='pixel' style='width: " + pixelDimensions + "px; height: " + pixelDimensions + "px'></div>";
+        for (let x = 0; x < gridDensity; x++) {
+            line += "<div class='pixel' id='" + x + "-" + y + "'onclick='paintPixel(" + x + "," + y + ")' style='background-color: white; width: " + pixelDimensions + "px; height: " + pixelDimensions + "px'></div>";
         }
         return line;
     }
+}
+function paintPixel(x, y) {
+    document.getElementById(x + "-" + y).style.setProperty('background-color', 'black');
 }
