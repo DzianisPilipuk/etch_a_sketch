@@ -1,5 +1,6 @@
 let gridDimensions;
 let paintEnable;
+const grid = document.getElementById("grid");
 setGridDimensions();
 function setGridDimensions() {
     if (window.innerWidth > 550 && window.innerHeight > 550) {
@@ -9,13 +10,22 @@ function setGridDimensions() {
     } else {
         gridDimensions = window.innerHeight * 0.9;
     }
-
 }
+
 let gridDensity; 
 getDensity();
 let pixelDimensions = (gridDimensions / gridDensity);
 createGrid();
+grid.addEventListener('mousedown', enablePaint);
+grid.addEventListener('mouseup', disablePaint);
 
+function enablePaint() {
+    paintEnable = true;
+    console.log("sasi");
+}
+function disablePaint() {
+    paintEnable = false;
+}
 function getDensity() {
     do { 
         gridDensity = prompt("Select grid density, min 16 max 100");
@@ -23,12 +33,12 @@ function getDensity() {
 }
 function createGrid() {
     for (let i = 0; i < gridDensity; i++) {
-        document.getElementById("grid").innerHTML += "<div style='display: flex'>" + createLine(i) + "</div>";
+        grid.innerHTML += "<div style='display: flex'>" + createLine(i) + "</div>";
     }
     function createLine(y) {
         let line = "";
         for (let x = 0; x < gridDensity; x++) {
-            line += "<div class='pixel' id='" + x + "-" + y + "' onmouseover='paintPixel(" + x + "," + y + ")' touchstart='paintPixelMobile(" + x + "," + y + ")' style='background-color: white; width: " + pixelDimensions + "px; height: " + pixelDimensions + "px'></div>";
+            line += "<div class='pixel' id='" + x + "-" + y + "' onmouseover='paintPixel(" + x + "," + y +  ")' ' style='background-color: white; width: " + pixelDimensions + "px; height: " + pixelDimensions + "px'></div>";
         }
         return line;
     }
@@ -37,10 +47,4 @@ function paintPixel(x, y) {
     if (paintEnable) {
         document.getElementById(x + "-" + y).style.setProperty('background-color', 'black');
     }
-}
-function paintPixelMobile(x, y) {
-        document.getElementById(x + "-" + y).style.setProperty('background-color', 'black');
-}
-function paintGrid(n) {
-    paintEnable = n;
 }
