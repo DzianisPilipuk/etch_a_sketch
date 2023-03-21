@@ -6,7 +6,7 @@ const grid = document.getElementById("grid");
 const colorPicker = document.getElementById("colorPicker");
 const pencilButton = document.getElementById("pencil");
 const eraserButton = document.getElementById("eraser");
-const clearButton = document.getElementById("clear")
+const clearButton = document.getElementById("clear");
 let paintColor = "#000000";
 setGridDimensions();
 function setGridDimensions() {
@@ -65,13 +65,20 @@ function createGrid() {
     function createLine(y) {
         let line = "";
         for (let x = 0; x < gridDensity; x++) {
-            line += "<div class='pixel' id='" + x + "-" + y + "' onmouseover='paintPixel(" + x + "," + y +  ")' ' style='background-color: white; width: " + pixelDimensions + "px; height: " + pixelDimensions + "px'></div>";
+            line += "<div></div>";
         }
         return line;
     }
-}
-function paintPixel(x, y) {
-    if (paintEnable) {
-        document.getElementById(x + "-" + y).style.setProperty('background-color', paintColor);
-    }
+    const pixels = document.querySelectorAll('#grid > div > div');
+    pixels.forEach(element => {
+        element.style.setProperty('width', pixelDimensions + 'px');
+        element.style.setProperty('height', pixelDimensions + 'px');
+        element.style.setProperty('background-color', '#FFFFFF');
+        element.className = "pixel";
+        element.addEventListener('mouseover', (e) => {
+            if (paintEnable) {
+                e.target.style.setProperty('background-color', paintColor);
+            }
+        })
+    })
 }
