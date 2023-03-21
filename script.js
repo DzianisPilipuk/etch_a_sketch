@@ -1,5 +1,7 @@
 let gridDimensions;
 let paintEnable;
+const slider = document.getElementById("densityRange");
+const gridDensityDisplayer = document.getElementById("gridDensity");
 const grid = document.getElementById("grid");
 setGridDimensions();
 function setGridDimensions() {
@@ -12,8 +14,14 @@ function setGridDimensions() {
     }
 }
 
-let gridDensity; 
-getDensity();
+gridDensityDisplayer.innerHTML = slider.value;
+slider.oninput = function() {
+    gridDensityDisplayer.innerHTML = this.value;
+    gridDensity = this.value;
+    pixelDimensions = (gridDimensions / gridDensity);
+    createGrid();
+}
+let gridDensity = slider.value; 
 let pixelDimensions = (gridDimensions / gridDensity);
 createGrid();
 grid.addEventListener('mousedown', enablePaint);
@@ -26,12 +34,8 @@ function enablePaint() {
 function disablePaint() {
     paintEnable = false;
 }
-function getDensity() {
-    do { 
-        gridDensity = prompt("Select grid density, min 16 max 100");
-    } while ( gridDensity < 16 || gridDensity > 100);
-}
 function createGrid() {
+    grid.innerHTML = "";
     for (let i = 0; i < gridDensity; i++) {
         grid.innerHTML += "<div style='display: flex'>" + createLine(i) + "</div>";
     }
