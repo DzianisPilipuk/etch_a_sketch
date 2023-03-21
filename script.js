@@ -4,7 +4,9 @@ const slider = document.getElementById("densityRange");
 const gridDensityDisplayer = document.getElementById("gridDensity");
 const grid = document.getElementById("grid");
 const colorPicker = document.getElementById("colorPicker");
-let paintColor = "black";
+const eraserButton = document.getElementById("eraser");
+const clearButton = document.getElementById("clear")
+let paintColor = "#000000";
 setGridDimensions();
 function setGridDimensions() {
     if (window.innerWidth > 550 && window.innerHeight > 550) {
@@ -20,6 +22,12 @@ gridDensityDisplayer.innerHTML = slider.value;
 colorPicker.oninput = function() {
     paintColor = this.value;
 }
+eraserButton.onclick = function() {
+    paintColor = "#FFFFFF";
+}
+clearButton.onclick = function() {
+    createGrid();
+}
 slider.oninput = function() {
     gridDensityDisplayer.innerHTML = this.value;
     gridDensity = this.value;
@@ -34,7 +42,6 @@ grid.addEventListener('mouseup', disablePaint);
 
 function enablePaint() {
     paintEnable = true;
-    console.log("sasi");
 }
 function disablePaint() {
     paintEnable = false;

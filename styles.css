@@ -1,3 +1,6 @@
+h1 {
+    margin: 0px;
+}
 .slide-container {
     height: 30px;
 }
@@ -21,13 +24,20 @@
     border-radius: 50%;
     cursor: pointer;
 }
-.color-picker-container {
-    height: 100px;
+.buttons-container {
+    height: 50px;
+    max-width: 500px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 .color-picker {
     width: 100px;
+    height: 25px;
+}
+.btn {
+    width: 100px;
+    height: 25px;
 }
 .pixel {
     border-style: solid;
