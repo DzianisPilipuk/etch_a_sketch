@@ -3,6 +3,8 @@ let paintEnable;
 const slider = document.getElementById("densityRange");
 const gridDensityDisplayer = document.getElementById("gridDensity");
 const grid = document.getElementById("grid");
+const colorPicker = document.getElementById("colorPicker");
+let paintColor = "black";
 setGridDimensions();
 function setGridDimensions() {
     if (window.innerWidth > 550 && window.innerHeight > 550) {
@@ -15,6 +17,9 @@ function setGridDimensions() {
 }
 
 gridDensityDisplayer.innerHTML = slider.value;
+colorPicker.oninput = function() {
+    paintColor = this.value;
+}
 slider.oninput = function() {
     gridDensityDisplayer.innerHTML = this.value;
     gridDensity = this.value;
@@ -49,6 +54,6 @@ function createGrid() {
 }
 function paintPixel(x, y) {
     if (paintEnable) {
-        document.getElementById(x + "-" + y).style.setProperty('background-color', 'black');
+        document.getElementById(x + "-" + y).style.setProperty('background-color', paintColor);
     }
 }
