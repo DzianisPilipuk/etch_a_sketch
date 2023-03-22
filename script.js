@@ -19,7 +19,7 @@ function setGridDimensions() {
     }
 }
 
-gridDensityDisplayer.innerHTML = slider.value;
+gridDensityDisplayer.textContent = slider.value;
 colorPicker.oninput = function() {
     paintColor = this.value;
 }
@@ -37,7 +37,7 @@ clearButton.onclick = function() {
     createGrid();
 }
 slider.oninput = function() {
-    gridDensityDisplayer.innerHTML = this.value;
+    gridDensityDisplayer.textContent = this.value;
     gridDensity = this.value;
     pixelDimensions = (gridDimensions / gridDensity);
     createGrid();
@@ -58,27 +58,29 @@ function createGrid() {
     paintColor = colorPicker.value;
     pencilButton.style.setProperty('border-style', 'solid')
     eraserButton.style.setProperty('border-style', 'none')
-    grid.innerHTML = "";
+    while (grid.firstChild) {
+        grid.removeChild(grid.lastChild);
+    }
     for (let i = 0; i < gridDensity; i++) {
-        grid.innerHTML += "<div style='display: flex'>" + createLine(i) + "</div>";
+        const line = document.createElement('div');
+        line.setAttribute('id', 'line');
+        line.style.display = 'flex';
+        grid.appendChild(line);
     }
-    function createLine(y) {
-        let line = "";
-        for (let x = 0; x < gridDensity; x++) {
-            line += "<div></div>";
+    const lines = document.querySelectorAll('#line')
+    lines.forEach(element => {
+        for (let i = 0; i < gridDensity; i++) {
+            const pixel = document.createElement('div');
+            element.appendChild(pixel);
+            pixel.style.width = pixelDimensions + 'px';
+            pixel.style.height = pixelDimensions + 'px';
+            pixel.style.backgroundColor = '#FFFFFF';
+            pixel.className = "pixel";
+            pixel.addEventListener('mouseover', (e) => {
+                if (paintEnable) {
+                    e.target.style.setProperty('background-color', paintColor);
+                }
+            })
         }
-        return line;
-    }
-    const pixels = document.querySelectorAll('#grid > div > div');
-    pixels.forEach(element => {
-        element.style.setProperty('width', pixelDimensions + 'px');
-        element.style.setProperty('height', pixelDimensions + 'px');
-        element.style.setProperty('background-color', '#FFFFFF');
-        element.className = "pixel";
-        element.addEventListener('mouseover', (e) => {
-            if (paintEnable) {
-                e.target.style.setProperty('background-color', paintColor);
-            }
-        })
     })
 }
