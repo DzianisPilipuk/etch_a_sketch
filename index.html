@@ -7,27 +7,30 @@
     <title>Etch-a-Sketch</title>
 
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Roboto&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="header">
-        <h1>Etch-a-Sketch</h1>
-    </div>
-    <div class="buttons-container">
-        <input type="color" value="#000000" class="color-picker" id="colorPicker">
-        <button class="btn" id="pencil">Pencil</button>
-        <button class="btn" id="eraser">Eraser</button>
-        <button class="btn" id="clear">Clear</button>
-    </div>
-    <div id="grid" class="grid">
-    </div>
-    <div class="grid-size">
-        <p>Grid density: <span id="gridDensity"></span></p>
-    </div>
-    <div class="slide-container">
-        <span>16</span>
-        <input type="range" min="16" max="100" value="30" class="slider" id="densityRange">
-        <span>100</span>
+    <div class="content" id="canvas">
+        <div class="header">
+            Etch-a-Sketch
+        </div>
+        <div class="buttons-container">
+            <input type="color" value="#000000" class="btn" id="colorPicker">
+            <button class="btn" id="pencil">Pencil</button>
+            <button class="btn" id="eraser">Eraser</button>
+            <button class="btn" id="clear">Clear</button>
+        </div>
+        <div id="grid" class="grid">
+        </div>
+        <div class="grid-size">
+            Grid density: <span id="gridDensity"></span>
+        </div>
+        <div class="slide-container">
+            <span>16</span>
+            <input type="range" min="16" max="100" value="30" class="slider" id="densityRange">
+            <span>100</span>
+        </div>
     </div>
 </body>
 </html>

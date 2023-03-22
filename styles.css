@@ -1,5 +1,31 @@
-h1 {
+:root {
+    --header-font: 'Alfa Slab One', cursive;
+    --regular-font: 'Roboto', sans-serif;
+}
+body {
+    font-family: var(--regular-font);
+}
+.content {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    width: 600px;
+    padding: 10px;
+    background-color: #bebebe;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.header {
+    color: rgb(44, 44, 44);
     margin: 0px;
+    font-family: var(--header-font);
+    font-size: 3em;
+    letter-spacing: 0.03em;
 }
 .slide-container {
     height: 30px;
@@ -9,7 +35,7 @@ h1 {
     width: 200px;
     height: 5px;
     border-radius: 2px;
-    background-color: rgb(170, 170, 170);
+    background-color: rgb(128, 128, 128);
     opacity: 0.7;
     transition: 1s;
 }
@@ -25,48 +51,47 @@ h1 {
     cursor: pointer;
 }
 .buttons-container {
+    width: 500px;
     height: 50px;
-    max-width: 500px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.color-picker {
-    background-color: #e6e6e6;
-    border-radius: 5px;
-    border-style: none;
-    width: 100px;
-    height: 25px;
-}
 .btn {
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.30);
+    font-family: var(--regular-font);
     background-color: #e6e6e6;
     border-style: none;
     border-radius: 5px;
     width: 100px;
     height: 25px;
+    border-color: rgb(61, 61, 61);
 }
 .pixel {
     border-style: solid;
     margin: -1px;
     border-width: 1px;
     border-color: #6e6e6e;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none;
 }
 .grid {
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+    box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.30);
 }
-.line {
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+.grid-size {
+    margin-top: 20px;
+}
+.slide-container {
+    display: flex;
+    align-items: center;
+}
+.slider {
+    margin: 0px 10px;
+}
+
+@media (max-width: 550px) {
+    .header {
+        font-size: 2em;
+    }
+    .buttons-container {
+        width: 500px;
+    }
 }

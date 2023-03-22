@@ -3,23 +3,21 @@ let paintEnable;
 const slider = document.getElementById("densityRange");
 const gridDensityDisplayer = document.getElementById("gridDensity");
 const grid = document.getElementById("grid");
+const canvas = document.getElementById("canvas")
 const colorPicker = document.getElementById("colorPicker");
 const pencilButton = document.getElementById("pencil");
 const eraserButton = document.getElementById("eraser");
 const clearButton = document.getElementById("clear");
 let paintColor = "#000000";
-setGridDimensions();
-function setGridDimensions() {
-    if (window.innerWidth > 550 && window.innerHeight > 550) {
-        gridDimensions = 500;
-    } else if (window.innerWidth < window.innerHeight){
-        gridDimensions = window.innerWidth * 0.9;
-    } else {
-        gridDimensions = window.innerHeight * 0.9;
-    }
-}
 
+setGridDimensions();
 gridDensityDisplayer.textContent = slider.value;
+let gridDensity = slider.value; 
+let pixelDimensions = (gridDimensions / gridDensity);
+createGrid();
+canvas.addEventListener('mousedown', enablePaint);
+canvas.addEventListener('mouseup', disablePaint);
+
 colorPicker.oninput = function() {
     paintColor = this.value;
 }
@@ -42,17 +40,21 @@ slider.oninput = function() {
     pixelDimensions = (gridDimensions / gridDensity);
     createGrid();
 }
-let gridDensity = slider.value; 
-let pixelDimensions = (gridDimensions / gridDensity);
-createGrid();
-grid.addEventListener('mousedown', enablePaint);
-grid.addEventListener('mouseup', disablePaint);
 
 function enablePaint() {
     paintEnable = true;
 }
 function disablePaint() {
     paintEnable = false;
+}
+function setGridDimensions() {
+    if (window.innerWidth > 550 && window.innerHeight > 550) {
+        gridDimensions = 500;
+    } else if (window.innerWidth < window.innerHeight){
+        gridDimensions = window.innerWidth * 0.9;
+    } else {
+        gridDimensions = window.innerHeight * 0.9;
+    }
 }
 function createGrid() {
     paintColor = colorPicker.value;
